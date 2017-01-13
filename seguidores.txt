@@ -1,0 +1,3 @@
+teacher§shadow§user1
+shadow§teacher
+user1§user2
