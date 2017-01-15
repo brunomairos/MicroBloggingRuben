@@ -7,6 +7,8 @@ package microbloggingruben;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,7 +22,7 @@ public class RegNovoUtilizadorUI extends javax.swing.JFrame {
     public RegNovoUtilizadorUI() {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
         setVisible(true);
     }
 
@@ -111,8 +113,38 @@ public class RegNovoUtilizadorUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        dispose();
-        new AutenticacaoUtilizadorUI();
+        String nome = jTextField2.getText();
+        String nickName = jTextField3.getText();
+        //Validação campos preenchidos
+        if (nome.equalsIgnoreCase("") || nickName.equalsIgnoreCase("")
+                || Arrays.equals("".toCharArray(), jPasswordField1.getPassword()) || Arrays.equals("".toCharArray(), jPasswordField2.getPassword())) {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos do formulário.");
+        } else {
+            NodeUtilizador nUtilizador = Utilitarios.pesquisarUtilizadorNickName(nickName);
+            //Validação do nickName
+            if (nUtilizador != null) {
+                JOptionPane.showMessageDialog(null, "NickName já registado. Insira outro nickName.");
+                jTextField3.setText("");
+            } else {
+                //Validação de passwords
+                if (Arrays.equals(jPasswordField2.getPassword(), jPasswordField1.getPassword())) {
+                    //Registo de um novo Utilizador (na memória da app e em ficheiro.
+                    nUtilizador = new NodeUtilizador(new Utilizador(nome, nickName, new String(jPasswordField1.getPassword())));
+                    if (Utilitarios.RegistarNovoUtilizador(nUtilizador.getUtilizador())) {
+                        JOptionPane.showMessageDialog(null, "Utilizador registado com sucesso.");
+                        dispose();
+                        new AutenticacaoUtilizadorUI();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Erro ao registar o utilizador.");
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "As passwords introduzidas não coincidem.");
+                    jPasswordField2.setText("");
+                    jPasswordField1.setText("");
+                }
+            }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

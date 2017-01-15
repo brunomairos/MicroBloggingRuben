@@ -51,8 +51,8 @@ public class Ficheiro {
      * @param nomeFicheiro
      * @throws IOException 
      */
-    public void abreEscrita( String nomeFicheiro ) throws IOException {
-        fw = new BufferedWriter( new FileWriter( nomeFicheiro ) );
+    public void abreEscrita( String nomeFicheiro, boolean notNewFile ) throws IOException {
+        fw = new BufferedWriter( new FileWriter(nomeFicheiro, notNewFile));
     }
     
     /**

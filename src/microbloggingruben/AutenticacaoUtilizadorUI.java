@@ -130,12 +130,13 @@ public class AutenticacaoUtilizadorUI extends javax.swing.JFrame {
                 Arrays.equals( "".toCharArray(), jPasswordField1.getPassword())){
             JOptionPane.showMessageDialog(null, "Preencha os dois campos: NickName e Password.");
         } else{
+           //Pesquisar o utilizador com o nickname introduzido
            NodeUtilizador nUtilizador = Utilitarios.pesquisarUtilizadorNickName(nickName);
-           if(Arrays.equals(nUtilizador.getUtilizador().getPassword().toCharArray(),jPasswordField1.getPassword())){
+           if(nUtilizador != null && Arrays.equals(nUtilizador.getUtilizador().getPassword().toCharArray(),jPasswordField1.getPassword())){
                JOptionPane.showMessageDialog(null, "Utilizador válido");
                dispose();
            } else{
-               JOptionPane.showMessageDialog(null, "NickName e Password inválidos");
+               JOptionPane.showMessageDialog(null, "NickName e/ou Password inválidos");
                jTextField1.setText("");
                jPasswordField1.setText("");
            }
