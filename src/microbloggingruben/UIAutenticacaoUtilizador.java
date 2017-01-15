@@ -14,12 +14,12 @@ import javax.swing.JOptionPane;
  *
  * @author bferreira
  */
-public class AutenticacaoUtilizadorUI extends javax.swing.JFrame {
+public class UIAutenticacaoUtilizador extends javax.swing.JFrame {
 
     /**
      * Creates new form UserLogin
      */
-    public AutenticacaoUtilizadorUI() {
+    public UIAutenticacaoUtilizador() {
         initComponents();  
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
@@ -120,7 +120,7 @@ public class AutenticacaoUtilizadorUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new RegNovoUtilizadorUI();
+        new UIRegNovoUtilizador();
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 

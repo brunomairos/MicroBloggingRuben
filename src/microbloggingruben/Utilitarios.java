@@ -29,9 +29,9 @@ public class Utilitarios {
                 }
             } while(linha != null);
             
-            new AutenticacaoUtilizadorUI();
+            new UIAutenticacaoUtilizador();
         } else{
-            new RegNovoUtilizadorUI();
+            new UIRegNovoUtilizador();
         }
     }
     

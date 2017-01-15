@@ -2,5 +2,3 @@ Bruno§teacher§1234
 Ruben§shadow§4321
 Utilizador1§user1§2345
 Utilizador2§user2§5432
-ines§inocas§123
-maria§marquinhas§123
