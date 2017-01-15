@@ -24,7 +24,7 @@ public class UIRegNovoUtilizador extends javax.swing.JFrame {
         initComponents();
         //Inserir os nicknames dos utilizadores na jlist
         preencherListUtilizadoresRegistados();
-        
+
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
         setVisible(true);
@@ -35,13 +35,13 @@ public class UIRegNovoUtilizador extends javax.swing.JFrame {
         jList1.setModel(model);
         NodeUtilizador no = MicroBloggingRuben.primeiroUtilizador;
         Utilizador utilizador;
-        while(no != null){
+        while (no != null) {
             utilizador = (Utilizador) no.getUtilizador();
             model.addElement(utilizador.getNickname());
             no = no.getProximoUtilizador();
         }
     }
-       
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -211,5 +211,4 @@ public class UIRegNovoUtilizador extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
 
-    
 }

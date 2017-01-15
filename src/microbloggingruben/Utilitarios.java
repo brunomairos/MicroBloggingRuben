@@ -25,18 +25,42 @@ public class Utilitarios {
                 if(linha != null){
                     String[] conteudoLinha = linha.split("§");
                     //conteudoLinha = nome§nickname,password
-                    new NodeUtilizador(new Utilizador(conteudoLinha[0], conteudoLinha[1], conteudoLinha[2]));
+                    NodeUtilizador nUtilizador = new NodeUtilizador(new Utilizador(conteudoLinha[0], conteudoLinha[1], conteudoLinha[2]));
                 }
             } while(linha != null);
-            
+            carregaListaSeguidores();
             new UIAutenticacaoUtilizador();
         } else{
             new UIRegNovoUtilizador();
         }
     }
     
-    public static void carregaListaSeguidores(){
-        
+    public static void carregaListaSeguidores() throws IOException{
+        String nomeFicheiro = "seguidores.txt";
+        Ficheiro f1 = new Ficheiro();
+        if(f1.existeFicheiro(nomeFicheiro)){
+            String linha = new String();
+            f1.abreLeitura(nomeFicheiro);
+            do{
+                linha = f1.leLinha();
+                if(linha != null){
+                    String[] conteudoLinha = linha.split("§");
+                    //conteudoLinha = nome§nickname,password
+                    String nickName = conteudoLinha[0];
+                    int nSeguidos = conteudoLinha.length;
+                    NodeUtilizador nUtilizador = Utilitarios.pesquisarUtilizadorNickName(nickName);
+                    Utilizador utilizador = nUtilizador.getUtilizador();
+                    for (int i = 1; i < nSeguidos; i++) {
+                        NodeUtilizador utSeguir = Utilitarios.pesquisarUtilizadorNickName(conteudoLinha[i]);
+                        NodeUtilizador nUtilizadorSeguido = new NodeUtilizador(utilizador, utSeguir.getUtilizador());
+                    }
+                }
+            } while(linha != null);
+            
+            new UIAutenticacaoUtilizador();
+        } else{
+            
+        }
     }
     
     public static void carregaPosts(){

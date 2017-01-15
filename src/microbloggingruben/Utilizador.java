@@ -10,14 +10,15 @@ package microbloggingruben;
  * @author rcunha
  */
 public class Utilizador {
+
     private static int nUtilizadores;
     private String nome;
     private String nickname;
     private String password;
-    private Utilizador primeiroUtSeguido;
-    private Post primeiroPost;
-    
-    public Utilizador(String nome, String nickname, String password){
+    private NodeUtilizador primeiroUtSeguido;
+    private NodePost primeiroPost;
+
+    public Utilizador(String nome, String nickname, String password) {
         setNome(nome);
         setNickname(nickname);
         setPassword(password);
@@ -47,12 +48,35 @@ public class Utilizador {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    public String toString(){
-        return (this.getNome() + " " + this.getNickname() + " " + this.getPassword());
+
+    public String toString() {
+        String userInfo = this.getNome() + " " + this.getNickname() + " " + this.getPassword() + " - ";
+        NodeUtilizador no = this.primeiroUtSeguido;
+        Utilizador utilizador;
+        String seguidores = "";
+        while (no != null) {
+            utilizador = (Utilizador) no.getUtilizador();
+            userInfo = userInfo + utilizador.getNickname();
+            no = no.getProximoUtilizador();
+            if (no != null) {
+                userInfo = userInfo + "; ";
+            } else {
+                userInfo = userInfo + ";";
+            }
+        }
+        return userInfo;
     }
+
     public static int getNutilizadores() {
         return nUtilizadores;
     }
-    
+
+    public NodeUtilizador getPrimeiroUtilizadorSeguido() {
+        return primeiroUtSeguido;
+    }
+
+    public void setPrimeiroUtilizadorSeguido(NodeUtilizador utSeguido) {
+        primeiroUtSeguido = utSeguido;
+    }
+
 }

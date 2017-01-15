@@ -17,7 +17,6 @@ public class MicroBloggingRuben {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
-        // (lista ligada) utlista;
         Utilitarios.carregaUtilizadores();
         System.out.println(Utilizador.getNutilizadores());
         Utilitarios.listarUtilizadores();
