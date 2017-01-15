@@ -17,7 +17,7 @@ public class Utilizador {
     //private (lista ligada) utSeguir;
     //private (lista de posts) posts;
     
-    Utilizador(String nome, String nickname, String password){
+    public Utilizador(String nome, String nickname, String password){
         setNome(nome);
         setNickname(nickname);
         setPassword(password);
@@ -48,7 +48,7 @@ public class Utilizador {
         this.password = password;
     }
     
-    public int getNutilizadores() {
+    public static int getNutilizadores() {
         return nUtilizadores;
     }
 }

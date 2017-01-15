@@ -16,6 +16,7 @@ public class MicroBloggingRuben {
      */
     public static void main(String[] args) {
         // (lista ligada) utlista;
+        new AutenticacaoUtilizador();
         
     }
     
