@@ -51,4 +51,13 @@ public class Utilizador {
     public static int getNutilizadores() {
         return nUtilizadores;
     }
+    
+    
+    public void registaUtilizador(){
+        
+    }
+    
+    public boolean validaUtilizador(){
+        return true;
+    }
 }
