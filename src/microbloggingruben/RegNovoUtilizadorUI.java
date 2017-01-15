@@ -5,17 +5,22 @@
  */
 package microbloggingruben;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 /**
  *
  * @author bferreira
  */
-public class RegNovoUtilizador extends javax.swing.JFrame {
+public class RegNovoUtilizadorUI extends javax.swing.JFrame {
 
     /**
      * Creates new form RegNovoUtilizador
      */
-    public RegNovoUtilizador() {
+    public RegNovoUtilizadorUI() {
         initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         setVisible(true);
     }
 
@@ -107,7 +112,7 @@ public class RegNovoUtilizador extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
-        new AutenticacaoUtilizador();
+        new AutenticacaoUtilizadorUI();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

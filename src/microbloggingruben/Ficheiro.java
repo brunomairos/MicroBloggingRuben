@@ -31,7 +31,7 @@ public class Ficheiro {
         boolean existe=false; 
             if(new File(nomeFicheiro).isFile()==false){
                  System.out.println("O ficheiro não existe!");
-                 existe = true;    
+                 existe = false;    
             }else{
                 System.out.println("O ficheiro existe!");
                 existe = true; 

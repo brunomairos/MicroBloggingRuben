@@ -48,16 +48,11 @@ public class Utilizador {
         this.password = password;
     }
     
+    public String toString(){
+        return (this.getNome() + " " + this.getNickname() + " " + this.getPassword());
+    }
     public static int getNutilizadores() {
         return nUtilizadores;
     }
     
-    
-    public void registaUtilizador(){
-        
-    }
-    
-    public boolean validaUtilizador(){
-        return true;
-    }
 }

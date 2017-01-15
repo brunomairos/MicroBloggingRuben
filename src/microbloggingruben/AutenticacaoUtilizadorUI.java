@@ -5,17 +5,24 @@
  */
 package microbloggingruben;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author bferreira
  */
-public class AutenticacaoUtilizador extends javax.swing.JFrame {
+public class AutenticacaoUtilizadorUI extends javax.swing.JFrame {
 
     /**
      * Creates new form UserLogin
      */
-    public AutenticacaoUtilizador() {
-        initComponents();        
+    public AutenticacaoUtilizadorUI() {
+        initComponents();  
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         setVisible(true);
     }
 
@@ -43,6 +50,11 @@ public class AutenticacaoUtilizador extends javax.swing.JFrame {
         jLabel2.setText("Password");
 
         jButton1.setText("Entrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Novo Utilizador");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -108,9 +120,28 @@ public class AutenticacaoUtilizador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new RegNovoUtilizador();
+        new RegNovoUtilizadorUI();
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String nickName = jTextField1.getText();
+        if(nickName.equalsIgnoreCase("") || 
+                Arrays.equals( "".toCharArray(), jPasswordField1.getPassword())){
+            JOptionPane.showMessageDialog(null, "Preencha os dois campos: NickName e Password.");
+        } else{
+           NodeUtilizador nUtilizador = Utilitarios.pesquisarUtilizadorNickName(nickName);
+           if(Arrays.equals(nUtilizador.getUtilizador().getPassword().toCharArray(),jPasswordField1.getPassword())){
+               JOptionPane.showMessageDialog(null, "Utilizador válido");
+               dispose();
+           } else{
+               JOptionPane.showMessageDialog(null, "NickName e Password inválidos");
+               jTextField1.setText("");
+               jPasswordField1.setText("");
+           }
+        }
+            
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

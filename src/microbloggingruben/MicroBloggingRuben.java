@@ -5,6 +5,8 @@
  */
 package microbloggingruben;
 
+import java.io.IOException;
+
 /**
  *
  * @author rcunha
@@ -14,9 +16,12 @@ public class MicroBloggingRuben {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // (lista ligada) utlista;
-        new AutenticacaoUtilizador();
+        Utilitarios.carregaUtilizadores();
+        System.out.println(Utilizador.getNutilizadores());
+        Utilitarios.listarUtilizadores();
+        
         
         //Ao inserirmos um utilizador colocamos sempre algo em primeiro,ou que já estava
         //ou o novo inserido.

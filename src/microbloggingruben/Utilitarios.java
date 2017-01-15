@@ -5,13 +5,32 @@
  */
 package microbloggingruben;
 
+import java.io.IOException;
+
 /**
  *
  * @author rcunha
  */
 public class Utilitarios {
-    public static void carregaUtilizadores(){
-        
+    public static void carregaUtilizadores() throws IOException{
+        String nomeFicheiro = "utilizadores.txt";
+        Ficheiro f1 = new Ficheiro();
+        if(f1.existeFicheiro(nomeFicheiro)){
+            String linha = new String();
+            f1.abreLeitura(nomeFicheiro);
+            do{
+                linha = f1.leLinha();
+                if(linha != null){
+                    String[] conteudoLinha = linha.split("§");
+                    //conteudoLinha = nome§nickname,password
+                    new NodeUtilizador(new Utilizador(conteudoLinha[0], conteudoLinha[1], conteudoLinha[2]));
+                }
+            } while(linha != null);
+            
+            new AutenticacaoUtilizadorUI();
+        } else{
+            new RegNovoUtilizadorUI();
+        }
     }
     
     public static void carregaListaSeguidores(){
@@ -50,10 +69,6 @@ public class Utilitarios {
                 no = no.getProximoUtilizador();
             }
         }
-        
-        if(no != null){
-            //Mensagem de nickname inválido
-        }
         return no;
     }
     
@@ -63,7 +78,7 @@ public class Utilitarios {
         Utilizador utilizador;
         while( no != null ){
             utilizador = (Utilizador)no.getUtilizador();
-            System.out.println(utilizador.getNickname());
+            System.out.println(utilizador.toString());
             no = no.getProximoUtilizador();
             if( no != null ){
                 System.out.print( " + " );
