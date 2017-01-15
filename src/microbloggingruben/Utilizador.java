@@ -14,8 +14,8 @@ public class Utilizador {
     private String nome;
     private String nickname;
     private String password;
-    //private (lista ligada) utSeguir;
-    //private (lista de posts) posts;
+    private Utilizador primeiroUtSeguido;
+    private Post primeiroPost;
     
     public Utilizador(String nome, String nickname, String password){
         setNome(nome);

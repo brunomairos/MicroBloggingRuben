@@ -10,6 +10,7 @@ package polinomio;
 // classe que define um termo do polin?mio
 public class Termo {
     
+     
     // coeficiente do termo
     private double coeficiente;
     // grau do termo
