@@ -135,7 +135,7 @@ public class UIAutenticacaoUtilizador extends javax.swing.JFrame {
            if(nUtilizador != null && Arrays.equals(nUtilizador.getUtilizador().getPassword().toCharArray(),jPasswordField1.getPassword())){
                JOptionPane.showMessageDialog(null, "Utilizador válido");
                dispose();
-               new UImicroblogging();
+               new UImicroblogging(nUtilizador.getUtilizador());
            } else{
                JOptionPane.showMessageDialog(null, "NickName e/ou Password inválidos");
                jTextField1.setText("");

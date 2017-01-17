@@ -181,6 +181,7 @@ public class UIRegNovoUtilizador extends javax.swing.JFrame {
                     nUtilizador = new NodeUtilizador(novoUtilizador);
                     //Ciclo para registo dos novos seguidos em memoria neste utilizador
                     //Percorrer os utilizadores selecionados
+                    novoUtilizador.setnSeguindo(jList1.getSelectedValuesList().size());
                     for (String item : jList1.getSelectedValuesList()) {
                         NodeUtilizador nUtilizadorSeguido = Utilitarios.pesquisarUtilizadorNickName(item);
                         //Criar um novo nó associado ao novo utilizador com o utilizador a seguir, fica ligado ao que já

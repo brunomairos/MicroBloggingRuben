@@ -17,6 +17,7 @@ public class Utilizador {
     private String password;
     private NodeUtilizador primeiroUtSeguido;
     private NodePost primeiroPost;
+    private int nSeguindo, nPosts;
 
     public Utilizador(String nome, String nickname, String password) {
         setNome(nome);
@@ -35,6 +36,14 @@ public class Utilizador {
 
     public String getNickname() {
         return nickname;
+    }
+    
+    public int getnSeguindo() {
+        return nSeguindo;
+    }
+    
+    public void setnSeguindo(int numero) {
+        nSeguindo = numero;
     }
 
     public void setNickname(String nickname) {

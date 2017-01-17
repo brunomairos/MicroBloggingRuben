@@ -51,6 +51,7 @@ public class Utilitarios {
                     int nSeguidos = conteudoLinha.length;
                     NodeUtilizador nUtilizador = Utilitarios.pesquisarUtilizadorNickName(nickName);
                     Utilizador utilizador = nUtilizador.getUtilizador();
+                    utilizador.setnSeguindo(nSeguidos-1);
                     for (int i = 1; i < nSeguidos; i++) {
                         NodeUtilizador utSeguir = Utilitarios.pesquisarUtilizadorNickName(conteudoLinha[i]);
                         NodeUtilizador nUtilizadorSeguido = new NodeUtilizador(utilizador, utSeguir.getUtilizador());
