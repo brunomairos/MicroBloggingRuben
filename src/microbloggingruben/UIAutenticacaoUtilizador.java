@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author bferreira
+ * @author rcunha
  */
 public class UIAutenticacaoUtilizador extends javax.swing.JFrame {
 

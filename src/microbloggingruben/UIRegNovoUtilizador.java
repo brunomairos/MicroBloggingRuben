@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author bferreira
+ * @author rcunha
  */
 public class UIRegNovoUtilizador extends javax.swing.JFrame {
 

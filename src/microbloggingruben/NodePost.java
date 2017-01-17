@@ -7,7 +7,7 @@ package microbloggingruben;
 
 /**
  *
- * @author bferreira
+ * @author rcunha
  */
 public class NodePost {
     

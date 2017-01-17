@@ -10,7 +10,7 @@ import java.awt.Toolkit;
 
 /**
  *
- * @author bferreira
+ * @author rcunha
  */
 public class UImicroblogging extends javax.swing.JFrame {
 
