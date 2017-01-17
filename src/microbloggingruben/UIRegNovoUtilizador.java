@@ -8,6 +8,7 @@ package microbloggingruben;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.Arrays;
+import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -175,8 +176,20 @@ public class UIRegNovoUtilizador extends javax.swing.JFrame {
             } else {
                 //Validação de passwords
                 if (Arrays.equals(jPasswordField2.getPassword(), jPasswordField1.getPassword())) {
-                    //Registo de um novo Utilizador (na memória da app e em ficheiro.
-                    nUtilizador = new NodeUtilizador(new Utilizador(nome, nickName, new String(jPasswordField1.getPassword())));
+                    //Registo de um novo Utilizador na memória da app.
+                    Utilizador novoUtilizador = new Utilizador(nome, nickName, new String(jPasswordField1.getPassword()));
+                    nUtilizador = new NodeUtilizador(novoUtilizador);
+                    //Ciclo para registo dos novos seguidos em memoria neste utilizador
+                    //Percorrer os utilizadores selecionados
+                    for (String item : jList1.getSelectedValuesList()) {
+                        NodeUtilizador nUtilizadorSeguido = Utilitarios.pesquisarUtilizadorNickName(item);
+                        //Criar um novo nó associado ao novo utilizador com o utilizador a seguir, fica ligado ao que já
+                        //existe ou fica como primeiro
+                        new NodeUtilizador(novoUtilizador, nUtilizadorSeguido.getUtilizador());
+                    }
+                    
+                    //Registo de um novo Utilizador no ficheiro utilizadores.
+                    //Registo da lista de seguidos por este utilizador no ficheiro seguidores.
                     if (Utilitarios.RegistarNovoUtilizador(nUtilizador.getUtilizador())) {
                         JOptionPane.showMessageDialog(null, "Utilizador registado com sucesso.");
                         dispose();
