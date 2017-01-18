@@ -211,11 +211,14 @@ public class UImicroblogging extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String msg = jTextField1.getText();
-        if(msg != null || !msg.equals("")){
+        if(msg != null && !msg.equals("")){
             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
             Date date = new Date();
+            //Adicionar Post em memória
             new NodePost(utilizador, new Post(dateFormat.format(date),msg));
-            //TO DO
+            msg = dateFormat.format(date) + " " + msg;
+            //Coloca-lo na lista de posts
+            model1.add(0,msg);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
