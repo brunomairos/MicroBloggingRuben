@@ -75,11 +75,10 @@ public class Utilitarios {
                 linha = f1.leLinha();
                 if (linha != null) {
                     String[] conteudoLinha = linha.split("§");
-                    //conteudoLinha = data§hora§Post
-                    String data = conteudoLinha[0];
-                    String hora = conteudoLinha[1];
-                    String msg = conteudoLinha[2];
-                    Post post = new Post(data+" - "+hora, msg);
+                    //conteudoLinha = data - hora§Post
+                    String dataHora = conteudoLinha[0];
+                    String msg = conteudoLinha[1];
+                    Post post = new Post(dataHora, msg);
                     utilizador.setnPosts(utilizador.getnPosts()+1);
                     new NodePost(utilizador, post);
                     //TO DO: gravar post e gravar hastags                    
