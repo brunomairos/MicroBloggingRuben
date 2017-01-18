@@ -21,7 +21,6 @@ public class MicroBloggingRuben {
         System.out.println(Utilizador.getNutilizadores());
         Utilitarios.listarUtilizadores();
         
-        
         //Ao inserirmos um utilizador colocamos sempre algo em primeiro,ou que já estava
         //ou o novo inserido.
     }

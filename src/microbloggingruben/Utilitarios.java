@@ -26,11 +26,13 @@ public class Utilitarios {
                 if (linha != null) {
                     String[] conteudoLinha = linha.split("§");
                     //conteudoLinha = nome§nickname,password
-                    NodeUtilizador nUtilizador = new NodeUtilizador(new Utilizador(conteudoLinha[0], conteudoLinha[1], conteudoLinha[2]));
+                    Utilizador utilizador = new Utilizador(conteudoLinha[0], conteudoLinha[1], conteudoLinha[2]);
+                    NodeUtilizador nUtilizador = new NodeUtilizador(utilizador);
+                    carregaPosts(utilizador);
                 }
             } while (linha != null);
             carregaListaSeguidores();
-            //new UIAutenticacaoUtilizador();
+            new UIAutenticacaoUtilizador();
         } else {
             new UIRegNovoUtilizador();
         }
@@ -58,15 +60,34 @@ public class Utilitarios {
                     }
                 }
             } while (linha != null);
-
-            new UIAutenticacaoUtilizador();
         } else {
 
         }
     }
 
-    public static void carregaPosts() {
+    public static void carregaPosts(Utilizador utilizador) throws IOException {
+        String nomeFicheiro = utilizador.getNickname()+".txt";
+        Ficheiro f1 = new Ficheiro();
+        if (f1.existeFicheiro(nomeFicheiro)) {
+            String linha = new String();
+            f1.abreLeitura(nomeFicheiro);
+            do {
+                linha = f1.leLinha();
+                if (linha != null) {
+                    String[] conteudoLinha = linha.split("§");
+                    //conteudoLinha = data§hora§Post
+                    String data = conteudoLinha[0];
+                    String hora = conteudoLinha[1];
+                    String msg = conteudoLinha[2];
+                    Post post = new Post(data+" - "+hora, msg);
+                    utilizador.setnPosts(utilizador.getnPosts()+1);
+                    new NodePost(utilizador, post);
+                    //TO DO: gravar post e gravar hastags                    
+                }
+            } while (linha != null);
+        } else {
 
+        }
     }
 
 //    public static NodeUtilizador inserirUtilizador( NodeUtilizador nUtilizador, Utilizador utilizador ){

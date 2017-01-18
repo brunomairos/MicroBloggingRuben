@@ -10,21 +10,21 @@ package microbloggingruben;
  * @author rcunha
  */
 public class Post {
-    private String post;
+    private String msg;
     private String dataHora;
     //Para facilitar pesquisa por hastags
         //private (lista de hastags)
     
-    public Post(String post, String dataHora){
-        setPost(post);
+    public Post(String dataHora, String post){
+        setMsg(post);
         setDataHora(dataHora);
     }
-    public String getPost() {
-        return post;
+    public String getMsg() {
+        return msg;
     }
 
-    public void setPost(String post) {
-        this.post = post;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     public String getDataHora() {

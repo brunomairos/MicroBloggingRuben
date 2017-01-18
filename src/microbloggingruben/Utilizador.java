@@ -45,6 +45,14 @@ public class Utilizador {
     public void setnSeguindo(int numero) {
         nSeguindo = numero;
     }
+    
+    public int getnPosts() {
+        return nPosts;
+    }
+    
+    public void setnPosts(int numero) {
+        nPosts = numero;
+    }
 
     public void setNickname(String nickname) {
         this.nickname = nickname;
@@ -86,6 +94,14 @@ public class Utilizador {
 
     public void setPrimeiroUtilizadorSeguido(NodeUtilizador utSeguido) {
         primeiroUtSeguido = utSeguido;
+    }
+    
+    public NodePost getPrimeiroPost() {
+        return primeiroPost;
+    }
+
+    public void setPrimeiroPost(NodePost npost) {
+        primeiroPost = npost;
     }
 
 }

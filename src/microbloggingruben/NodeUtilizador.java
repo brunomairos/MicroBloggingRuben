@@ -16,19 +16,19 @@ public class NodeUtilizador {
     private NodeUtilizador proximoUtilizador;
 
     // construtor sem argumentos
-    NodeUtilizador() {
+    public NodeUtilizador() {
     }
 
     //construtor com argumentos. O 2º parâmetro é para criar a lista de utilizadores principal
     //ou a lista de utilizadores que cada um dos utilizadores segue.
-    NodeUtilizador(Utilizador user) {
+    public NodeUtilizador(Utilizador user) {
         this.utilizador = user;
         proximoUtilizador = MicroBloggingRuben.primeiroUtilizador;
         MicroBloggingRuben.primeiroUtilizador = this;
 
     }
     
-    NodeUtilizador(Utilizador user, Utilizador userSeguido) {
+    public NodeUtilizador(Utilizador user, Utilizador userSeguido) {
         this.utilizador = userSeguido;
         proximoUtilizador = user.getPrimeiroUtilizadorSeguido();
         user.setPrimeiroUtilizadorSeguido(this);

@@ -7,6 +7,9 @@ package microbloggingruben;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.DefaultListModel;
 
 /**
@@ -17,22 +20,26 @@ public class UImicroblogging extends javax.swing.JFrame {
 
     private DefaultListModel<String> model3 = new DefaultListModel<>();
     private DefaultListModel<String> model2 = new DefaultListModel<>();
+    private DefaultListModel<String> model1 = new DefaultListModel<>();
+    private Utilizador utilizador;
     /**
-     * Creates new form UImicroblogging
-     * Com o parâmetro o utilizador autenticado 
+     * Creates new form UImicroblogging Com o parâmetro o utilizador autenticado
      */
     public UImicroblogging(Utilizador utilizador) {
+        this.utilizador = utilizador;
         initComponents();
         //Para aparecer no meio do ecrã
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
         jLabel1.setText("Bem Vindo " + utilizador.getNome());
-        jLabel4.setText("@"+utilizador.getNickname());
+        jLabel4.setText("@" + utilizador.getNickname());
         jLabel2.setText(Utilizador.getNutilizadores() + " Utilizadores");
-        jLabel3.setText(utilizador.getnSeguindo()+" Seguindo");
+        jLabel3.setText(utilizador.getnSeguindo() + " Seguindo");
+        jLabel5.setText(utilizador.getnPosts() + " Posts");
         preencherListaUtilizadores();
         preencherListaUtilizadoresSeguindo(utilizador);
         preencherListaUtilizadoresOutros(utilizador);
+        preencherListaPosts(utilizador);
         //preencherListaPosts();
         setVisible(true);
     }
@@ -75,16 +82,21 @@ public class UImicroblogging extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jList1);
 
         jButton1.setText("Publicar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setText("? utilizadores");
+        jLabel2.setToolTipText("");
 
-        jLabel3.setText("Seguindo ? utilizadores");
+        jLabel3.setToolTipText("");
 
         jLabel4.setText("@shadow");
 
-        jLabel5.setText("Posts");
+        jLabel5.setToolTipText("");
 
-        jLabel6.setText("Seguidores");
+        jLabel6.setToolTipText("");
 
         jList2.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "User1" };
@@ -197,6 +209,16 @@ public class UImicroblogging extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String msg = jTextField1.getText();
+        if(msg != null || !msg.equals("")){
+            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy - HH:mm");
+            Date date = new Date();
+            new NodePost(utilizador, new Post(dateFormat.format(date),msg));
+            //TO DO
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -227,7 +249,7 @@ public class UImicroblogging extends javax.swing.JFrame {
             jComboBox1.addItem(no.getUtilizador().getNickname());
             no = no.getProximoUtilizador();
         }
-         jComboBox1.setSelectedIndex(-1);
+        jComboBox1.setSelectedIndex(-1);
     }
 
     private void preencherListaUtilizadoresSeguindo(Utilizador utilizador) {
@@ -250,14 +272,14 @@ public class UImicroblogging extends javax.swing.JFrame {
         while (no != null) {
             NodeUtilizador noSeguindo = utilizador.getPrimeiroUtilizadorSeguido();
             utilizadorRegistado = (Utilizador) no.getUtilizador();
-            while(noSeguindo != null && seguido == false){
-                utilizadorSeguindo= (Utilizador) noSeguindo.getUtilizador();
-                if(utilizadorRegistado.getNickname().equalsIgnoreCase(utilizadorSeguindo.getNickname())){
+            while (noSeguindo != null && seguido == false) {
+                utilizadorSeguindo = (Utilizador) noSeguindo.getUtilizador();
+                if (utilizadorRegistado.getNickname().equalsIgnoreCase(utilizadorSeguindo.getNickname())) {
                     seguido = true;
                 }
                 noSeguindo = noSeguindo.getProximoUtilizador();
             }
-            if(seguido == false){
+            if (seguido == false) {
                 model2.addElement(utilizadorRegistado.getNickname());
             }
             seguido = false;
@@ -265,7 +287,27 @@ public class UImicroblogging extends javax.swing.JFrame {
         }
     }
 
-    private void preencherListaPosts() {
-        
+    private void preencherListaPosts(Utilizador utilizador) {
+        jList1.setModel(model1);
+        NodePost noPost = utilizador.getPrimeiroPost();
+        while (noPost != null) {
+            Post post = noPost.getPost();
+            model1.addElement(post.getDataHora() + "   " + post.getMsg());
+            noPost = noPost.getProximoPost();
+        }
+
+        NodeUtilizador noSeguido = utilizador.getPrimeiroUtilizadorSeguido();
+        while (noSeguido != null) {
+            Utilizador utilizadorSeguido = noSeguido.getUtilizador();
+            noPost = utilizadorSeguido.getPrimeiroPost();
+            while (noPost != null) {
+                Post post = noPost.getPost();
+                model1.addElement(post.getDataHora() + "   " + post.getMsg());
+                noPost = noPost.getProximoPost();
+            }
+            noSeguido = noSeguido.getProximoUtilizador();
+        }
+
     }
+
 }
