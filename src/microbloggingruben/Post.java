@@ -22,6 +22,10 @@ public class Post {
     public String getMsg() {
         return msg;
     }
+    
+    public String gethashtags(){
+        return hashtags;
+    }
 
     public void setMsg(String msg) {
         this.msg = msg;
