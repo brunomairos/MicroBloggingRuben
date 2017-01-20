@@ -18,8 +18,6 @@ public class MicroBloggingRuben {
      */
     public static void main(String[] args) throws IOException {
         Utilitarios.carregaUtilizadores();
-        System.out.println(Utilizador.getNutilizadores());
-        Utilitarios.listarUtilizadores();
         
         //Ao inserirmos um utilizador colocamos sempre algo em primeiro,ou que já estava
         //ou o novo inserido.

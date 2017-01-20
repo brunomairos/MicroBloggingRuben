@@ -30,10 +30,10 @@ public class Ficheiro {
     public boolean existeFicheiro(String nomeFicheiro) throws IOException{ 
         boolean existe=false; 
             if(new File(nomeFicheiro).isFile()==false){
-                 System.out.println("O ficheiro não existe!");
+                 //System.out.println("O ficheiro não existe!");
                  existe = false;    
             }else{
-                System.out.println("O ficheiro existe!");
+                //System.out.println("O ficheiro existe!");
                 existe = true; 
             }
             return(existe); 

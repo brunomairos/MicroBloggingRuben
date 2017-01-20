@@ -143,12 +143,12 @@ public class UImicroblogging extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
                                 .addComponent(jTextField2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton4))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
                             .addComponent(jTextField1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -231,7 +231,7 @@ public class UImicroblogging extends javax.swing.JFrame {
             Date date = new Date();
             //Adicionar Post em memória
             new NodePost(utilizador, new Post(dateFormat.format(date), msg));
-            String post = dateFormat.format(date) + " " + msg;
+            String post = dateFormat.format(date) + " <" + utilizador.getNickname()+"> " + msg;
             //Coloca-lo na lista de posts
             model1.add(0, post);
             //Gravar no ficheiro de posts
@@ -445,7 +445,7 @@ public class UImicroblogging extends javax.swing.JFrame {
             noPost = utilizador.getPrimeiroPost();
             while (noPost != null) {
                 Post post = noPost.getPost();
-                model1.addElement(post.getDataHora() + "   " + post.getMsg());
+                model1.addElement(post.getDataHora() + " <"+utilizador.getNickname()+"> " + post.getMsg());
                 noPost = noPost.getProximoPost();
             }
             noSeguido = utilizador.getPrimeiroUtilizadorSeguido();
@@ -455,7 +455,7 @@ public class UImicroblogging extends javax.swing.JFrame {
             noPost = utilizadorSeguido.getPrimeiroPost();
             while (noPost != null) {
                 Post post = noPost.getPost();
-                model1.addElement(post.getDataHora() + "   " + post.getMsg());
+                model1.addElement(post.getDataHora() +" <"+utilizadorSeguido.getNickname()+"> " + post.getMsg());
                 noPost = noPost.getProximoPost();
             }
             noSeguido = noSeguido.getProximoUtilizador();
