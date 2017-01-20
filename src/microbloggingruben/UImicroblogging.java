@@ -117,6 +117,11 @@ public class UImicroblogging extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jList3);
 
         jButton3.setText("Deixar de Seguir");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Pesquisar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -316,8 +321,43 @@ public class UImicroblogging extends javax.swing.JFrame {
         preencherListaUtilizadoresOutros(utilizador);
         preencherListaPosts(utilizador, false);
         AtualizarFichSeguidos();
-
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        for (String item : jList3.getSelectedValuesList()) {
+            //Utilizador a deixar de seguir
+            NodeUtilizador nUtilizadorSeguido = Utilitarios.pesquisarUtilizadorNickName(item);
+            System.out.println(nUtilizadorSeguido.getUtilizador().getNickname());
+            
+            NodeUtilizador nUtilizadoePrimeiroSeguido = utilizador.getPrimeiroUtilizadorSeguido();
+            
+            if(nUtilizadorSeguido.getUtilizador().getNickname().equals(nUtilizadoePrimeiroSeguido.getUtilizador().getNickname())){
+                utilizador.setPrimeiroUtilizadorSeguido(nUtilizadoePrimeiroSeguido.getProximoUtilizador());
+            }else{
+                //2º nó utilizador seguido
+                NodeUtilizador nUtilizadorDpPrimeiroSeg = nUtilizadoePrimeiroSeguido.getProximoUtilizador();
+                System.out.println(nUtilizadorDpPrimeiroSeg.getUtilizador().getNickname());
+                
+                while(nUtilizadorDpPrimeiroSeg!=null){
+                    if(nUtilizadorSeguido.getUtilizador().getNickname().equals(nUtilizadorDpPrimeiroSeg.getUtilizador().getNickname())){
+                        nUtilizadoePrimeiroSeguido.setProximo(nUtilizadorDpPrimeiroSeg.getProximoUtilizador());
+                        break;
+                    }
+                    nUtilizadoePrimeiroSeguido = nUtilizadorDpPrimeiroSeg;
+                    nUtilizadorDpPrimeiroSeg = nUtilizadorDpPrimeiroSeg.getProximoUtilizador();
+                }
+            }
+            utilizador.setnSeguindo(utilizador.getnSeguindo() - 1);
+        }
+        model1.removeAllElements();
+        model2.removeAllElements();
+        model3.removeAllElements();
+        jLabel3.setText(utilizador.getnSeguindo() + " Seguindo");
+        preencherListaUtilizadoresSeguindo(utilizador);
+        preencherListaUtilizadoresOutros(utilizador);
+        preencherListaPosts(utilizador, false);
+        AtualizarFichSeguidos();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
