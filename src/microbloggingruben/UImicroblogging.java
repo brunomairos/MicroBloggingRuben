@@ -315,6 +315,8 @@ public class UImicroblogging extends javax.swing.JFrame {
         preencherListaUtilizadoresSeguindo(utilizador);
         preencherListaUtilizadoresOutros(utilizador);
         preencherListaPosts(utilizador, false);
+        AtualizarFichSeguidos();
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -461,4 +463,35 @@ public class UImicroblogging extends javax.swing.JFrame {
 
     }
 
+    public void AtualizarFichSeguidos() {
+
+        Ficheiro f1 = new Ficheiro();
+        try {
+
+            //Acrescentado o parâmetro true para permitir acrescentar linhas sem apagar o ficheiro existente.
+            f1.abreEscrita("seguidores.txt", false);
+            //Ciclo para acrescentar todos os seguidos pelo utilizador.Criar String com todos os nickNames dos
+            //utilizadores seguidos
+            NodeUtilizador no = MicroBloggingRuben.primeiroUtilizador;
+            while (no != null) {
+                NodeUtilizador noSeguido = no.getUtilizador().getPrimeiroUtilizadorSeguido();
+                String seguidos = "§";
+                while (noSeguido != null) {
+                    seguidos = seguidos + noSeguido.getUtilizador().getNickname();
+                    noSeguido = noSeguido.getProximoUtilizador();
+                    if (noSeguido != null) {
+                        seguidos = seguidos + "§";
+                    }
+                }
+                if (!seguidos.equals("§")) {
+                    f1.escreveLinha(no.getUtilizador().getNickname() + seguidos);
+                }
+                no = no.getProximoUtilizador();
+            }
+            f1.fechaEscrita();
+
+        } catch (IOException ex) {
+
+        }
+    }
 }

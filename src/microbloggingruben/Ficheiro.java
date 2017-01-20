@@ -14,7 +14,7 @@ import java.io.IOException;
 
 /**
  *
- * @author bferreira
+ * @author rcunha
  */
 public class Ficheiro {
     private BufferedReader fr;

@@ -89,22 +89,6 @@ public class Utilitarios {
         }
     }
 
-//    public static NodeUtilizador inserirUtilizador( NodeUtilizador nUtilizador, Utilizador utilizador ){
-//        //Validar nickname
-//        NodeUtilizador n2 = Utilitarios.pesquisarUtilizadorNickName(utilizador.getNickname());
-//        
-//        //Se existe um utilizador com esse nickname retornamos novamente o 1º,
-//        //não é acrescentado um novo utilizador.
-//        if( n2 != null ) {
-//            return MicroBloggingRuben.primeiroUtilizador;
-//        }
-//        // Senão existe é inserido um novo utilizador na lista
-//        else{
-//            nUtilizador.setUtilizador(utilizador);
-//            nUtilizador.setProximo(MicroBloggingRuben.primeiroUtilizador);
-//            return nUtilizador;
-//        }
-//    }
     public static NodeUtilizador pesquisarUtilizadorNickName(String nickName) {
         NodeUtilizador no = MicroBloggingRuben.primeiroUtilizador;
         Utilizador utilizador;
@@ -119,7 +103,7 @@ public class Utilitarios {
         return no;
     }
 
-    // listagem de todos os termos do polin?mio
+    // listagem de todos os termos do polinomio
     public static void listarUtilizadores() {
         NodeUtilizador no = MicroBloggingRuben.primeiroUtilizador;
         Utilizador utilizador;

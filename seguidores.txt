@@ -1,4 +1,4 @@
-teacher§shadow§user1
-shadow§teacher
+shadow1§user2§user1§shadow§teacher
 user1§user2
-shadow1§teacher§shadow§user1§user2
+shadow§teacher
+teacher§user2§user1§shadow
